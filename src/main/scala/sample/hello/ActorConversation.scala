@@ -5,19 +5,19 @@ import akka.actor.Actor
 import akka.actor.Props
 
 
-class HelloActor extends Actor {
+class ActorConversation extends Actor {
   def receive = {
     case "hello" => println("hello back to you")
     case _       => println("huh?")
   }
 }
 
-object Main3 extends App {
+object StartActorConversation extends App {
   val system = ActorSystem("HelloSystem")
-  val helloActor = system.actorOf(Props[HelloActor], name ="helloactor")
+  val helloActor = system.actorOf(Props[ActorConversation], name ="helloactor")
   
   helloActor ! "hello"
   helloActor ! "buenos dias"
   
-//  system.shutdown
+  system.shutdown
 }
